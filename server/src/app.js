@@ -33,12 +33,16 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Basic Health Check Route
-app.get('/api/v1', (req, res) => {
+app.get('/api/v1/health', (req, res) => {
     res.status(200).json({
         success: true,
         message: 'EArena API is running'
     });
 });
+
+// API Routes
+const routes = require('./routes');
+app.use('/api/v1', routes);
 
 // 404 Handler
 app.use((req, res, next) => {
