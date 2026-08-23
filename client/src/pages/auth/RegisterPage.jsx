@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
+import { Eye, EyeOff } from 'lucide-react';
 
 const registerSchema = z.object({
     name: z.string().min(1, 'Name is required'),
@@ -23,6 +24,7 @@ const registerSchema = z.object({
 const RegisterPage = () => {
     const { register: registerUser, isRegistering } = useAuth();
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
 
     const {
         register,
@@ -50,10 +52,10 @@ const RegisterPage = () => {
             <div className="max-w-md w-full bg-slate-800 rounded-xl shadow-xl overflow-hidden p-8 border border-slate-700">
                 <div className="text-center mb-8">
                     <h2 className="text-3xl font-bold text-white">Create Account</h2>
-                    <p className="text-slate-400 mt-2">Join EArena to manage your tournaments</p>
+                    <p className="text-slate-400 mt-2">Join EArena today</p>
                 </div>
 
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
                     <div>
                         <label className="block text-sm font-medium text-slate-300 mb-1">Full Name</label>
                         <input
@@ -71,7 +73,7 @@ const RegisterPage = () => {
                             {...register('username')}
                             type="text"
                             className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                            placeholder="johndoe_99"
+                            placeholder="johndoe"
                         />
                         {errors.username && <p className="text-red-400 text-xs mt-1">{errors.username.message}</p>}
                     </div>
@@ -89,12 +91,21 @@ const RegisterPage = () => {
 
                     <div>
                         <label className="block text-sm font-medium text-slate-300 mb-1">Password</label>
-                        <input
-                            {...register('password')}
-                            type="password"
-                            className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                            placeholder="Create a strong password"
-                        />
+                        <div className="relative">
+                            <input
+                                {...register('password')}
+                                type={showPassword ? "text" : "password"}
+                                className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 pr-10"
+                                placeholder="Create a strong password"
+                            />
+                            <button
+                                type="button"
+                                className="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-300"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
+                        </div>
                         {errors.password && <p className="text-red-400 text-xs mt-1">{errors.password.message}</p>}
                     </div>
 

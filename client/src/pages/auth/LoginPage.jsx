@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
+import { Eye, EyeOff } from 'lucide-react';
 
 const loginSchema = z.object({
     email: z.string().email('Invalid email address'),
@@ -15,6 +16,7 @@ const LoginPage = () => {
     const { login, isLoggingIn } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const [showPassword, setShowPassword] = useState(false);
     
     // Redirect to where they came from or dashboard
     const from = location.state?.from?.pathname || '/';
@@ -64,12 +66,21 @@ const LoginPage = () => {
                                 Forgot password?
                             </Link>
                         </div>
-                        <input
-                            {...register('password')}
-                            type="password"
-                            className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                            placeholder="Enter your password"
-                        />
+                        <div className="relative">
+                            <input
+                                {...register('password')}
+                                type={showPassword ? "text" : "password"}
+                                className="w-full px-4 py-2 bg-slate-900 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 pr-10"
+                                placeholder="Enter your password"
+                            />
+                            <button
+                                type="button"
+                                className="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-300"
+                                onClick={() => setShowPassword(!showPassword)}
+                            >
+                                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            </button>
+                        </div>
                         {errors.password && <p className="text-red-400 text-xs mt-1">{errors.password.message}</p>}
                     </div>
 

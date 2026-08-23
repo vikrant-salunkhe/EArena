@@ -70,3 +70,13 @@ exports.getMe = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.changePassword = async (req, res, next) => {
+    try {
+        const { currentPassword, newPassword } = req.body;
+        await authService.changePassword(req.user.id, currentPassword, newPassword);
+        res.status(200).json(new ApiResponse(200, {}, 'Password updated successfully.'));
+    } catch (error) {
+        next(error);
+    }
+};

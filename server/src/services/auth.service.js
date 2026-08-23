@@ -130,8 +130,33 @@ class AuthService {
             role: user.role,
             avatar: user.avatar,
             bio: user.bio,
+            country: user.country,
             status: user.status
         };
+    }
+
+    async changePassword(userId, currentPassword, newPassword) {
+        const user = await User.findById(userId).select('+password');
+        if (!user) {
+            throw new ApiError(404, 'User not found');
+        }
+
+        // Verify current password
+        const isMatch = await user.comparePassword(currentPassword);
+        if (!isMatch) {
+            throw new ApiError(401, 'Current password is incorrect');
+        }
+
+        // Ensure new password is different
+        const isSame = await user.comparePassword(newPassword);
+        if (isSame) {
+            throw new ApiError(400, 'New password must be different from current password');
+        }
+
+        user.password = newPassword;
+        await user.save();
+
+        return true;
     }
 }
 

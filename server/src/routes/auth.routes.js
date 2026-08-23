@@ -5,14 +5,16 @@ const {
     logout,
     forgotPassword,
     resetPassword,
-    getMe
+    getMe,
+    changePassword
 } = require('../controllers/auth.controller');
 const validate = require('../middleware/validate');
 const {
     registerSchema,
     loginSchema,
     forgotPasswordSchema,
-    resetPasswordSchema
+    resetPasswordSchema,
+    changePasswordSchema
 } = require('../validators/auth.validator');
 const { protect } = require('../middleware/auth');
 
@@ -24,5 +26,6 @@ router.post('/logout', logout);
 router.post('/forgot-password', validate(forgotPasswordSchema), forgotPassword);
 router.put('/reset-password/:resetToken', validate(resetPasswordSchema), resetPassword);
 router.get('/me', protect, getMe);
+router.patch('/change-password', protect, validate(changePasswordSchema), changePassword);
 
 module.exports = router;
