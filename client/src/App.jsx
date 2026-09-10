@@ -16,6 +16,9 @@ import ProfilePage from './pages/dashboard/ProfilePage';
 import TeamsPage from './pages/dashboard/TeamsPage';
 import MyTeamPage from './pages/dashboard/MyTeamPage';
 import TeamDetailPage from './pages/dashboard/TeamDetailPage';
+import TournamentsPage from './pages/dashboard/TournamentsPage';
+import TournamentDetailPage from './pages/dashboard/TournamentDetailPage';
+import MyTournamentsPage from './pages/dashboard/MyTournamentsPage';
 
 const App = () => {
     return (
@@ -37,11 +40,15 @@ const App = () => {
                             </div>
                         } />
                         <Route path="/profile" element={<ProfilePage />} />
+                        <Route path="/tournaments" element={<TournamentsPage />} />
+                        <Route path="/tournaments/:tournamentId" element={<TournamentDetailPage />} />
+                        <Route path="/my-tournaments" element={<MyTournamentsPage />} />
                         <Route path="/teams" element={<TeamsPage />} />
                         <Route path="/teams/:teamId" element={<TeamDetailPage />} />
                         <Route path="/my-team" element={<MyTeamPage />} />
                     </Route>
                 </Route>
+
 
                 
                 {/* 404 */}

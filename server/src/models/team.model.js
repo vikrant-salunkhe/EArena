@@ -60,7 +60,7 @@ const teamSchema = new mongoose.Schema(
 teamSchema.index({ name: 'text', tag: 'text' });
 teamSchema.index({ game: 1 });
 teamSchema.index({ captain: 1 });
-teamSchema.index({ joinCode: 1 });
 
 const Team = mongoose.model('Team', teamSchema);
+
 module.exports = Team;
