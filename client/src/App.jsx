@@ -13,6 +13,9 @@ import ResetPasswordPage from './pages/auth/ResetPasswordPage';
 
 // Dashboard Pages
 import ProfilePage from './pages/dashboard/ProfilePage';
+import TeamsPage from './pages/dashboard/TeamsPage';
+import MyTeamPage from './pages/dashboard/MyTeamPage';
+import TeamDetailPage from './pages/dashboard/TeamDetailPage';
 
 const App = () => {
     return (
@@ -34,8 +37,12 @@ const App = () => {
                             </div>
                         } />
                         <Route path="/profile" element={<ProfilePage />} />
+                        <Route path="/teams" element={<TeamsPage />} />
+                        <Route path="/teams/:teamId" element={<TeamDetailPage />} />
+                        <Route path="/my-team" element={<MyTeamPage />} />
                     </Route>
                 </Route>
+
                 
                 {/* 404 */}
                 <Route path="*" element={
