@@ -1,6 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { User, LogOut, LayoutDashboard } from 'lucide-react';
+import { User, LogOut, LayoutDashboard, Shield, Users } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const DashboardLayout = () => {
@@ -18,8 +18,11 @@ const DashboardLayout = () => {
 
     const navigation = [
         { name: 'Dashboard', href: '/', icon: LayoutDashboard },
+        { name: 'Explore Teams', href: '/teams', icon: Users },
+        { name: 'My Squad', href: '/my-team', icon: Shield },
         { name: 'Profile', href: '/profile', icon: User },
     ];
+
 
     return (
         <div className="min-h-screen bg-slate-900 flex text-white">
