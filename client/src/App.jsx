@@ -19,6 +19,7 @@ import TeamDetailPage from './pages/dashboard/TeamDetailPage';
 import TournamentsPage from './pages/dashboard/TournamentsPage';
 import TournamentDetailPage from './pages/dashboard/TournamentDetailPage';
 import MyTournamentsPage from './pages/dashboard/MyTournamentsPage';
+import MyRegistrationsPage from './pages/dashboard/MyRegistrationsPage';
 
 const App = () => {
     return (
@@ -43,6 +44,7 @@ const App = () => {
                         <Route path="/tournaments" element={<TournamentsPage />} />
                         <Route path="/tournaments/:tournamentId" element={<TournamentDetailPage />} />
                         <Route path="/my-tournaments" element={<MyTournamentsPage />} />
+                        <Route path="/registrations" element={<MyRegistrationsPage />} />
                         <Route path="/teams" element={<TeamsPage />} />
                         <Route path="/teams/:teamId" element={<TeamDetailPage />} />
                         <Route path="/my-team" element={<MyTeamPage />} />

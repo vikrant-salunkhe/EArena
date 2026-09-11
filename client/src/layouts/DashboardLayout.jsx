@@ -1,6 +1,6 @@
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { User, LogOut, LayoutDashboard, Shield, Users, Trophy, Calendar } from 'lucide-react';
+import { User, LogOut, LayoutDashboard, Shield, Users, Trophy, Calendar, UserCheck } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const DashboardLayout = () => {
@@ -22,6 +22,7 @@ const DashboardLayout = () => {
         { name: 'Dashboard', href: '/', icon: LayoutDashboard },
         { name: 'Tournaments', href: '/tournaments', icon: Trophy },
         ...(isOrganizerOrAdmin ? [{ name: 'My Tournaments', href: '/my-tournaments', icon: Calendar }] : []),
+        { name: 'Registrations', href: '/registrations', icon: UserCheck },
         { name: 'Explore Teams', href: '/teams', icon: Users },
         { name: 'My Squad', href: '/my-team', icon: Shield },
         { name: 'Profile', href: '/profile', icon: User },
